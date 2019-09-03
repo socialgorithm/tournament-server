@@ -121,7 +121,7 @@ var SocketServer = (function () {
                     res.writeHead(500);
                     return res.end("Error loading index.html");
                 }
-                var updated = data.replace(/\${version}/gm, 'v' + info.version);
+                var updated = data.replace(/\${version}/gm, "v" + info.version);
                 res.writeHead(200);
                 res.end(updated);
             });
