@@ -16,7 +16,7 @@ export interface IOptions {
 }
 
 export const DEFAULT_OPTIONS: IOptions = {
-  game: ["https://play-utt-game-server.herokuapp.com"],
+  game: ["https://play-uttt-game-server.herokuapp.com"],
   port: parseInt(process.env.PORT, 10) || 3141,
 };
 
