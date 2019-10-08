@@ -16,7 +16,7 @@ export interface IOptions {
 }
 
 export const DEFAULT_OPTIONS: IOptions = {
-  game: ["http://localhost:5433"],
+  game: ["https://play-utt-tournament.herokuapp.com"],
   port: parseInt(process.env.PORT, 10) || 3141,
 };
 
