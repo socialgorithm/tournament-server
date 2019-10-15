@@ -107,8 +107,8 @@ export class TournamentRunner {
     if (this.tournament.waiting) {
       return;
     }
-
-    this.playNextMatch();
+    
+    setTimeout(this.playNextMatch, 100);
   }
 
   private playNextMatch = () => {
