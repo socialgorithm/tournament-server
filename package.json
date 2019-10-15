@@ -4,7 +4,7 @@
   "description": "Socialgorithm Tournament Server",
   "main": "index.js",
   "scripts": {
-    "start": "export DEBUG=* && node dist/index.js",
+    "start": "export DEBUG= && node dist/index.js",
     "start:debug": "export DEBUG=sg:* && node dist/index.js",
     "start:dev": "nodemon",
     "debug": "npm run build && node --inspect-brk dist/index.js",
