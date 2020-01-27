@@ -65,7 +65,7 @@
     "pre-commit": "^1.2.2",
     "ts-node": "^8.0.3",
     "tsconfig-paths": "^3.8.0",
-    "tslint": "^5.13.1",
+    "tslint": "^6.0.0",
     "typedoc": "^0.14.2",
     "typescript": "^3.3.3333"
   }
