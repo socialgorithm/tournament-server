@@ -9,6 +9,9 @@ import { GameServerInfoConnection } from "../game-server/GameServerInfoConnectio
 import { Events as PubSubEvents } from "../pub-sub";
 import PubSub from "../pub-sub/PubSub";
 
+// tslint:disable-next-line:no-var-requires
+const info = require("../../package.json");
+
 export class SocketServer {
   private io: SocketIO.Server;
   private pubSub: PubSub;
@@ -152,15 +155,23 @@ export class SocketServer {
    * @param res
    */
   private handler(req: http.IncomingMessage, res: http.ServerResponse) {
-    fs.readFile(__dirname + "/../../public/index.html",
+    try {
+      fs.readFile(__dirname + "/../../public/index.html",
+      "utf8",
       (err: any, data: any) => {
         if (err) {
           res.writeHead(500);
           return res.end("Error loading index.html");
         }
 
+        const updated = data.replace(/\${version}/gm, "v" + info.version);
+
         res.writeHead(200);
-        res.end(data);
+        res.end(updated);
       });
+    } catch (e) {
+      res.writeHead(500);
+      return res.end("Error loading index.html");
+    }
   }
 }

@@ -7,6 +7,7 @@ var http = require("http");
 var io = require("socket.io");
 var pub_sub_1 = require("../pub-sub");
 var PubSub_1 = require("../pub-sub/PubSub");
+var info = require("../../package.json");
 var SocketServer = (function () {
     function SocketServer(port, gameServers) {
         var _this = this;
@@ -114,14 +115,21 @@ var SocketServer = (function () {
         }
     };
     SocketServer.prototype.handler = function (req, res) {
-        fs.readFile(__dirname + "/../../public/index.html", function (err, data) {
-            if (err) {
-                res.writeHead(500);
-                return res.end("Error loading index.html");
-            }
-            res.writeHead(200);
-            res.end(data);
-        });
+        try {
+            fs.readFile(__dirname + "/../../public/index.html", "utf8", function (err, data) {
+                if (err) {
+                    res.writeHead(500);
+                    return res.end("Error loading index.html");
+                }
+                var updated = data.replace(/\${version}/gm, "v" + info.version);
+                res.writeHead(200);
+                res.end(updated);
+            });
+        }
+        catch (e) {
+            res.writeHead(500);
+            return res.end("Error loading index.html");
+        }
     };
     return SocketServer;
 }());
